@@ -21,6 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "stdbool.h"
 
 /* USER CODE END Includes */
 
@@ -253,7 +254,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 bool busy; 	// flag to control busy loop
 
-// Keep LED on higher prio interrupt changes flag to false
+// Keep LED on until higher prio interrupt changes flag to false
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Button_Pin) {
 	if (GPIO_Button_Pin == Reset_Button_Pin) {
 		busy = false;
