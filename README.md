@@ -1,10 +1,12 @@
-# GPIO Control using Priority-Based Interrupts
+# Anti-Blocking GPIO Controller using Priority-Based Interrupts
 
-## An STM32 project written in C using priority-based interrupts to control a GPIO pin.
+## An STM32 project written in C to prevent long-running ISRs from blocking more important ones.
 
 ### About
 
-This project was created to solve the problem of long-running ISRs causing delays for more important ones. This project consists of the following:
+This project simulates a long-running ISR by using a busy loop, which is then 
+preempted by a higher-priority interrupt to prevent blocking. This is known
+as preemption. This firmware consists of the following:
 
 - two interrupts of varying priority (buttons)
 - a GPIO out (red LED)
@@ -18,8 +20,6 @@ This project was created to solve the problem of long-running ISRs causing delay
 - STM32F401RE Microcontroller
 - STM32CubeIDE
 
-#### License
-
-#### Contact
-
 #### References
+- HAL API: UM1725 Description of STM32F4 HAL and low-layer drivers
+- Peripheral registers: RM0368 Reference manual
