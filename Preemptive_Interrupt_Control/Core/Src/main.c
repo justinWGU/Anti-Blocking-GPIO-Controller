@@ -254,16 +254,18 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 bool busy; 	// flag to control busy loop
 
-// Keep LED on until higher prio interrupt changes flag to false
+// Control busy flag depending on which button is pressed (RESET or LED_BUTTON)
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Button_Pin) {
 	if (GPIO_Button_Pin == Reset_Button_Pin) {
 		busy = false;
 	}
 	else {
+		// busy loop writing LED pin high
 		busy = true;
 		while (busy) {
 			HAL_GPIO_WritePin(Red_LED_GPIO_Port, Red_LED_Pin, GPIO_PIN_SET);
 		}
+		// write LED pin low
 		HAL_GPIO_WritePin(Red_LED_GPIO_Port, Red_LED_Pin, GPIO_PIN_RESET);
 	}
 }
